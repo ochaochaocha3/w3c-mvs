@@ -1,3 +1,2 @@
-#ASKER -高分子計器株式会社-	http://www.asker.co.jp/
-Hiki2MediaWiki for SRW Wiki	http://www.li-sa.jp/ocha3/hiki2mw/
-li-sa.net/ocha3	http://www.li-sa.net/ocha3/
+#Title	URL
+Example Page	http://www.example.com/

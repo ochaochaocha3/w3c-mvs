@@ -12,6 +12,7 @@ File.open("./url-list.txt") do |f|
     end
 end
 
+exists_valid_page = false
 invalid_pages = []
 nd_pages = []
 pages.each do |p|
@@ -19,7 +20,11 @@ pages.each do |p|
 
     validity = W3CMVS::valid? p[:url]
     if (validity != nil)
-        invalid_pages << p[:title] unless validity
+        if validity
+            exists_valid_page = true
+        else
+            invalid_pages << p[:title] unless validity
+        end
     else
         nd_pages << p[:title]
     end
@@ -29,14 +34,20 @@ end
 
 puts "-" * 80
 puts "[Results]"
+br = false
 
-if invalid_pages.empty?
+if exists_valid_page && invalid_pages.empty? && nd_pages.empty?
     puts "All pages are valid."
-else
+    br = true
+end
+
+unless invalid_pages.empty?
+    print "\n" if br
     puts "Invalid:", invalid_pages
+    br = true
 end
 
 unless nd_pages.empty?
-    print "\n"
+    print "\n" if br
     puts "Cannot determined:", nd_pages
 end
