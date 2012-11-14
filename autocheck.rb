@@ -3,7 +3,7 @@ require "kconv"
 
 pages = []
 File.open("./url-list.txt") do |f|
-    lines = f.readlines
+    lines = f.read.toutf8.split("\n")
     lines.each do |l|
         unless /^#/ =~ l
             param = l.chomp.split "\t"
